@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/MenuBtn.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/NiceFont.tres" type="DynamicFont" id=2]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0.0705882, 0.164706, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mnuNewGame" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 544.0
+margin_right = 410.0
+margin_bottom = 611.0
+focus_neighbour_left = NodePath("../mnuExit")
+focus_neighbour_top = NodePath("../mnuExit")
+focus_neighbour_right = NodePath("../mnuOptions")
+focus_neighbour_bottom = NodePath("../mnuOptions")
+focus_next = NodePath("../mnuOptions")
+focus_previous = NodePath("../mnuExit")
+text = "New Game"
+referance_path = "res://scenes/World.tscn"
+start_focused = true
+
+[node name="mnuOptions" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 640.0
+margin_right = 410.0
+margin_bottom = 707.0
+focus_neighbour_left = NodePath("../mnuNewGame")
+focus_neighbour_top = NodePath("../mnuNewGame")
+focus_neighbour_right = NodePath("../mnuExit")
+focus_neighbour_bottom = NodePath("../mnuExit")
+focus_next = NodePath("../mnuExit")
+focus_previous = NodePath("../mnuNewGame")
+text = "Options"
+referance_path = "res://scenes/Options.tscn"
+
+[node name="mnuExit" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 736.0
+margin_right = 410.0
+margin_bottom = 803.0
+focus_neighbour_left = NodePath("../mnuOptions")
+focus_neighbour_top = NodePath("../mnuOptions")
+focus_neighbour_right = NodePath("../mnuNewGame")
+focus_neighbour_bottom = NodePath("../mnuNewGame")
+focus_next = NodePath("../mnuNewGame")
+focus_previous = NodePath("../mnuOptions")
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 104.0
+margin_top = 328.0
+margin_right = 470.0
+margin_bottom = 398.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.811765, 0.988235, 1, 1 )
+text = "Flood Escape"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
