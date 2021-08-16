@@ -2,6 +2,7 @@ extends Button
 
 export var referance_path = ""
 export (bool) var start_focused = false
+var camera
 
 func _ready():
 	if (start_focused):
@@ -10,9 +11,15 @@ func _ready():
 	connect("mouse_entered", self, "_on_Button_mouse_entered")
 	connect("pressed", self, "_on_Button_Pressed")
 
+	rect_position.x = 18
+	camera = get_tree().get_root().find_node("Camera2D",true,false)
+	
 func _process(delta):
-	if Input.is_action_just_pressed("ui_up"):
-		start_focused = true
+	if not camera == null:
+		var yPosition = camera.get_camera_screen_center()
+		rect_position.y = yPosition.y-496
+	else:
+		pass
 
 func _on_Button_mouse_entered():
 	grab_focus()
@@ -25,3 +32,5 @@ func _on_Button_pressed():
 		get_tree().change_scene(referance_path)
 	else:
 		get_tree().quit()
+
+

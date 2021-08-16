@@ -49,8 +49,8 @@ func _on_Timer_timeout():
 		platform.position.y = platform_spawn_location.position.y
 	if not score % 2 == 0:
 		$Platforms.add_child(small_platform)
-		small_platform.position = platform_spawn_location.position
-
+		small_platform.position.x = rng.randf_range(platform_spawn_location.position.x, 576)
+		small_platform.position.y = platform_spawn_location.position.y
 
 #func _on_Wall_wall_death():
 #	print("wall killed")

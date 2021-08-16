@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var SPEED = 2
+var speed = 2
 
 func _ready():
 	var world = get_tree().get_root().find_node("World",false,false)
@@ -9,13 +9,13 @@ func _ready():
 	world.connect("fast",self,"handle_fast")
 
 func handle_slow():
-	SPEED = .7
+	speed = .7
 func handle_normal():
-	SPEED = 2
+	speed = 2
 func handle_fast():
-	SPEED = 5
+	speed = 5
 
 func _physics_process(delta):
-	position.y += SPEED
+	position.y += speed
 	if position.y >= 1624:
 		queue_free()

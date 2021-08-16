@@ -3,7 +3,7 @@ extends Position2D
 export(PackedScene) var wall
 export(int) var grid_size
 
-var SPEED = 2
+var speed = 2
 
 signal instance_node(node, loction)
 
@@ -16,15 +16,15 @@ func _ready():
 	world.connect("fast",self,"handle_fast")
 
 func handle_slow():
-	SPEED = .7
+	speed = .7
 func handle_normal():
-	SPEED = 2
+	speed = 2
 func handle_fast():
-	SPEED = 5
+	speed = 5
 
 func _process(delta):
-	if global_position.y > -4096:
-		emit_signal("instance_node", wall, global_position.y)
+	if global_position.y >= -4096:
 		global_position.y -= grid_size
+		emit_signal("instance_node", wall, global_position.y)
 	else:
-		global_position.y += SPEED
+		global_position.y += speed
