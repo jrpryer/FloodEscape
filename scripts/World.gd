@@ -20,8 +20,7 @@ func _process(delta):
 	var cur_dist_top = $PlatformPath/PlatformSpawn.position.y - $Player.position.y
 	var cur_dist_bottom = Floor.water_level.origin.y - $Player.position.y
 	if cur_dist_top > MIN_DIST:
-		print("top_moving")
-#		$PlatformPath.position.y -= 100
+		#print("top_moving")
 		$PlatformPath/PlatformSpawn.position.y -= 100
 	if cur_dist_bottom <= -900:
 		emit_signal("slow")
@@ -32,7 +31,7 @@ func _process(delta):
 	
 func new_game():
 	$Player.reset($StartPosition.position) # Temporary
-	#print(score)
+	$Player.breath = 1 # Temporary
 
 func _on_Timer_timeout():
 	#print($Platforms/DeathLine.position.y)
@@ -59,7 +58,6 @@ func _on_Timer_timeout():
 #	wall.position.y = 0
 
 func instance_node(node, location):
-	print("making walls")
 	var wall = node.instance()
 	$Walls.add_child(wall)
 	wall.global_position.y = location

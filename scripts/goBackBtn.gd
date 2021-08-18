@@ -20,6 +20,8 @@ func _process(delta):
 		rect_position.y = yPosition.y-496
 	else:
 		pass
+	if Input.is_action_pressed("ui_cancel"):
+		_on_Button_pressed()
 
 func _on_Button_mouse_entered():
 	grab_focus()

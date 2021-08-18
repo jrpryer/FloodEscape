@@ -22,11 +22,6 @@ animations = [ {
 "name": "Run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "Jump",
@@ -36,13 +31,24 @@ animations = [ {
 "loop": true,
 "name": "Fall",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "Cling",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 26.3687
-height = 11.0055
+height = 20.2985
 
-[sub_resource type="LineShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 29.7493, 634.996 )
 
 [sub_resource type="Curve2D" id=4]
 _data = {
@@ -63,7 +69,7 @@ __meta__ = {
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
 frames = SubResource( 1 )
-animation = "Idle"
+animation = "Cling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( -4, 0 )
@@ -81,6 +87,30 @@ drag_margin_bottom = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="LeftWallRaycast1" type="RayCast2D" parent="Player"]
+position = Vector2( -24, -10.3813 )
+rotation = 1.57079
+scale = Vector2( 1, 0.480002 )
+enabled = true
+
+[node name="LeftWallRaycast2" type="RayCast2D" parent="Player"]
+position = Vector2( -24, 11.8796 )
+rotation = 1.57079
+scale = Vector2( 1, 0.480002 )
+enabled = true
+
+[node name="RightWallRaycast1" type="RayCast2D" parent="Player"]
+position = Vector2( 16, -10.3813 )
+rotation = -1.5708
+scale = Vector2( 1, 0.480002 )
+enabled = true
+
+[node name="RightWallRaycast2" type="RayCast2D" parent="Player"]
+position = Vector2( 16, 11.8796 )
+rotation = 4.71238
+scale = Vector2( 1, 0.480002 )
+enabled = true
+
 [node name="Floor" type="Area2D" parent="."]
 position = Vector2( 288, 1120 )
 scale = Vector2( 1.56, 1 )
@@ -90,9 +120,14 @@ __meta__ = {
 }
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 0, 628.963 )
 scale = Vector2( 7.24, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 script = ExtResource( 3 )
+
+[node name="DeathLine" type="Position2D" parent="Floor"]
+position = Vector2( 0, 1208 )
+scale = Vector2( 0.641026, 1 )
 
 [node name="PlatformPath" type="Path2D" parent="."]
 curve = SubResource( 4 )
@@ -130,13 +165,10 @@ position = Vector2( 544, 1000 )
 wait_time = 1.5
 autostart = true
 
-[node name="DeathLine" type="Position2D" parent="Platforms"]
-position = Vector2( 288, 1624 )
-
 [node name="Walls" type="Node" parent="."]
 
 [node name="WallGenerator" type="Position2D" parent="Walls"]
-position = Vector2( 0, 1408 )
+position = Vector2( 0, 1600 )
 script = ExtResource( 4 )
 wall = ExtResource( 8 )
 grid_size = 80
@@ -152,5 +184,6 @@ margin_bottom = 424.0
 [connection signal="instance_node" from="." to="." method="instance_node"]
 [connection signal="fell" from="Player" to="." method="new_game"]
 [connection signal="body_shape_entered" from="Floor" to="Player" method="_on_Floor_body_shape_entered"]
+[connection signal="body_shape_exited" from="Floor" to="Player" method="_on_Floor_body_shape_exited"]
 [connection signal="death_line" from="Floor" to="." method="_on_Floor_death_line"]
 [connection signal="timeout" from="Platforms/Timer" to="." method="_on_Timer_timeout"]
