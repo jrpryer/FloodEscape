@@ -1,0 +1,255 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/Snail D 7.png" type="Texture" id=1]
+[ext_resource path="res://assets/Snail B 7.png" type="Texture" id=2]
+[ext_resource path="res://assets/Snail A 7.png" type="Texture" id=3]
+[ext_resource path="res://assets/Snail C 7.png" type="Texture" id=4]
+[ext_resource path="res://assets/bubble.png" type="Texture" id=5]
+[ext_resource path="res://assets/keyImage.png" type="Texture" id=6]
+[ext_resource path="res://assets/bubblepop2.png" type="Texture" id=7]
+[ext_resource path="res://assets/spacekeyImage.png" type="Texture" id=8]
+[ext_resource path="res://assets/bubblepop1.png" type="Texture" id=9]
+[ext_resource path="res://assets/TitleScreenBkground.png" type="Texture" id=10]
+[ext_resource path="res://assets/spent_bubble.png" type="Texture" id=11]
+[ext_resource path="res://scenes/UI/goBackBtn.tscn" type="PackedScene" id=12]
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://fonts/GOTHIC.TTF"
+
+[sub_resource type="DynamicFont" id=11]
+size = 20
+use_filter = true
+font_data = SubResource( 10 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.5
+} ]
+
+[sub_resource type="DynamicFont" id=13]
+size = 15
+use_filter = true
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 15
+use_filter = true
+font_data = SubResource( 10 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="DynamicFont" id=16]
+size = 15
+use_filter = true
+font_data = SubResource( 10 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ThemedBackground" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="JumpInstructions" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 330.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 11 )
+text = "Press                        to jump"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JumpSprite" type="AnimatedSprite" parent="JumpInstructions"]
+position = Vector2( 360, 88 )
+frames = SubResource( 12 )
+playing = true
+
+[node name="Spacebar" type="Label" parent="JumpInstructions/JumpSprite"]
+margin_left = -274.828
+margin_top = -104.0
+margin_right = -202.828
+margin_bottom = -78.0
+custom_fonts/font = SubResource( 13 )
+text = "Spacebar"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="JumpInstructions"]
+position = Vector2( 120, 4.352 )
+scale = Vector2( 0.8, 1 )
+texture = ExtResource( 8 )
+
+[node name="RunInstructions" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 280.0
+margin_right = 414.0
+margin_bottom = 335.0
+custom_fonts/font = SubResource( 11 )
+text = "Use                                   to run and
+                                          stear in the air"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="RunInstructions"]
+position = Vector2( 112, -8 )
+texture = ExtResource( 6 )
+
+[node name="aKey" type="Label" parent="RunInstructions/Sprite2"]
+margin_left = -11.3546
+margin_top = -18.9587
+margin_right = 7.64536
+margin_bottom = 7.04126
+custom_fonts/font = SubResource( 14 )
+text = "A"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="Sprite" parent="RunInstructions"]
+position = Vector2( 160, -8 )
+texture = ExtResource( 6 )
+
+[node name="sKey" type="Label" parent="RunInstructions/Sprite3"]
+margin_left = -9.88988
+margin_top = -19.0
+margin_right = 9.11012
+margin_bottom = 7.0
+custom_fonts/font = SubResource( 14 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite4" type="Sprite" parent="RunInstructions"]
+position = Vector2( 208, -8 )
+texture = ExtResource( 6 )
+
+[node name="dKey" type="Label" parent="RunInstructions/Sprite4"]
+margin_left = -9.89961
+margin_top = -18.9587
+margin_right = 9.10039
+margin_bottom = 7.04126
+custom_fonts/font = SubResource( 14 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RunSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 424, 400 )
+frames = SubResource( 15 )
+playing = true
+
+[node name="BreathInstructions" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 512.0
+margin_right = 455.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 11 )
+text = "Press                        to take a breath if 
+                                   you have lost breathe "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lshiftKey" type="Label" parent="BreathInstructions"]
+margin_left = 119.055
+margin_top = -26.9587
+margin_right = 167.055
+margin_bottom = -0.95874
+custom_fonts/font = SubResource( 16 )
+text = "LShift"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite5" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 144, -8 )
+scale = Vector2( 1.8, 1 )
+texture = ExtResource( 6 )
+
+[node name="Bubble1" type="Sprite" parent="."]
+position = Vector2( 328, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Bubble2" type="Sprite" parent="."]
+position = Vector2( 360, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Bubble3" type="Sprite" parent="."]
+position = Vector2( 392, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Bubble4" type="Sprite" parent="."]
+position = Vector2( 424, 600 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="PoppingBubble" type="AnimatedSprite" parent="."]
+position = Vector2( 456, 600 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 17 )
+frame = 11
+playing = true
+
+[node name="Tip1" type="Label" parent="."]
+margin_left = 24.0
+margin_top = 792.189
+margin_right = 554.0
+margin_bottom = 905.189
+custom_fonts/font = SubResource( 11 )
+text = "Run up against walls and branch edges 
+to slide and slow your fall
+
+Press Jump while doing this and you can wall bounce!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goBackButton" parent="." instance=ExtResource( 12 )]
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 113.0
+margin_bottom = 32.0
+referance_path = "res://scenes/UI/TitleScreen.tscn"

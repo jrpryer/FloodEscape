@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/NiceFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/UI/goBackBtn.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0.290196, 0.290196, 0.290196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 384.0
+margin_right = 538.0
+margin_bottom = 454.0
+rect_rotation = -20.3992
+custom_fonts/font = ExtResource( 1 )
+text = "NOTHING HERE YET"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goBackButton" parent="." instance=ExtResource( 2 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 97.0
+margin_bottom = 32.0
+referance_path = "res://scenes/UI/TitleScreen.tscn"

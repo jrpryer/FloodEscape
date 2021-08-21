@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/TreeC_12.png" type="Texture" id=1]
+[ext_resource path="res://assets/TreeB_8.png" type="Texture" id=2]
+[ext_resource path="res://tiles/GrassTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/PlatformArea.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 20 )
+
+[node name="SmallPlatformR1" type="KinematicBody2D"]
+position = Vector2( -48, 16 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 8, 8 )
+format = 1
+tile_data = PoolIntArray( -196617, 0, 0, -196611, 2, 0 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="PlatformCollider" type="CollisionShape2D" parent="."]
+position = Vector2( -24, -12.0947 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -24, -16 )
+scale = Vector2( 1.08333, 1.16667 )
+texture = ExtResource( 1 )

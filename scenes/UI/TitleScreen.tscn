@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/UI/MenuBtn.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/TitleScreenBkground.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/NiceFontSmall.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 56
+font_data = ExtResource( 3 )
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0.0705882, 0.164706, 0.121569, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="mnuNewGame" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 544.0
+margin_right = 408.0
+margin_bottom = 611.0
+focus_neighbour_left = NodePath("../mnuExit")
+focus_neighbour_top = NodePath("../mnuExit")
+focus_neighbour_right = NodePath("../mnuOptions")
+focus_neighbour_bottom = NodePath("../mnuOptions")
+focus_next = NodePath("../mnuOptions")
+focus_previous = NodePath("../mnuExit")
+custom_fonts/font = ExtResource( 4 )
+text = "New Game"
+referance_path = "res://scenes/World.tscn"
+start_focused = true
+
+[node name="mnuControls" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 640.0
+margin_right = 410.0
+margin_bottom = 707.0
+custom_fonts/font = ExtResource( 4 )
+text = "Controls"
+referance_path = "res://scenes/UI/Controls.tscn"
+
+[node name="mnuOptions" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 736.0
+margin_right = 410.0
+margin_bottom = 803.0
+focus_neighbour_left = NodePath("../mnuNewGame")
+focus_neighbour_top = NodePath("../mnuNewGame")
+focus_neighbour_right = NodePath("../mnuExit")
+focus_neighbour_bottom = NodePath("../mnuExit")
+focus_next = NodePath("../mnuExit")
+focus_previous = NodePath("../mnuNewGame")
+custom_fonts/font = ExtResource( 4 )
+text = "Options"
+referance_path = "res://scenes/UI/Options.tscn"
+
+[node name="mnuExit" parent="." instance=ExtResource( 1 )]
+margin_left = 160.0
+margin_top = 832.0
+margin_right = 410.0
+margin_bottom = 899.0
+focus_neighbour_left = NodePath("../mnuOptions")
+focus_neighbour_top = NodePath("../mnuOptions")
+focus_neighbour_right = NodePath("../mnuNewGame")
+focus_neighbour_bottom = NodePath("../mnuNewGame")
+focus_next = NodePath("../mnuNewGame")
+focus_previous = NodePath("../mnuOptions")
+custom_fonts/font = ExtResource( 4 )
+text = "Exit"
+
+[node name="Title" type="Label" parent="."]
+margin_left = 184.0
+margin_top = 136.0
+margin_right = 392.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 104, 0 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.843137, 0.992157, 1, 1 )
+text = "Flood Run"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

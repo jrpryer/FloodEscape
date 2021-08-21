@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/BackgroundTiles.gd" type="Script" id=1]
+[ext_resource path="res://tiles/MV/Autotiles A4.png" type="Texture" id=2]
+[ext_resource path="res://scripts/BackgroundStatic.gd" type="Script" id=3]
+
+[sub_resource type="TileSet" id=1]
+0/name = "Autotiles A4.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 288, 176, 192, 48 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Background1" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+modulate = Color( 0.321569, 0.282353, 0.262745, 1 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -196608, 0, 0, -196596, 0, 0, -196584, 0, 0, 0, 0, 0, 12, 0, 0, 24, 0, 0, 196608, 0, 0, 196620, 0, 0, 196632, 0, 0, 393216, 0, 0, 393228, 0, 0, 393240, 0, 0, 589824, 0, 0, 589836, 0, 0, 589848, 0, 0, 786432, 0, 0, 786444, 0, 0, 786456, 0, 0, 983040, 0, 0, 983052, 0, 0, 983064, 0, 0, 1179648, 0, 0, 1179660, 0, 0, 1179672, 0, 0, 1376256, 0, 0, 1376268, 0, 0, 1376280, 0, 0, 1572864, 0, 0, 1572876, 0, 0, 1572888, 0, 0, 1769472, 0, 0, 1769484, 0, 0, 1769496, 0, 0, 1966080, 0, 0, 1966092, 0, 0, 1966104, 0, 0, 2162688, 0, 0, 2162700, 0, 0, 2162712, 0, 0, 2359296, 0, 0, 2359308, 0, 0, 2359320, 0, 0, 2555904, 0, 0, 2555916, 0, 0, 2555928, 0, 0, 2752512, 0, 0, 2752524, 0, 0, 2752536, 0, 0, 2949120, 0, 0, 2949132, 0, 0, 2949144, 0, 0, 3145728, 0, 0, 3145740, 0, 0, 3145752, 0, 0, 3342336, 0, 0, 3342348, 0, 0, 3342360, 0, 0, 3538944, 0, 0, 3538956, 0, 0, 3538968, 0, 0, 3735552, 0, 0, 3735564, 0, 0, 3735576, 0, 0, 3932160, 0, 0, 3932172, 0, 0, 3932184, 0, 0 )
+script = ExtResource( 1 )

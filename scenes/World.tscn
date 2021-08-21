@@ -1,30 +1,38 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Floor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerScript.gd" type="Script" id=2]
 [ext_resource path="res://scripts/FloorShape.gd" type="Script" id=3]
 [ext_resource path="res://scripts/WallGenerator.gd" type="Script" id=4]
 [ext_resource path="res://scripts/World.gd" type="Script" id=5]
-[ext_resource path="res://scenes/Platform.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/SmallPlatform1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/Label.gd" type="Script" id=6]
+[ext_resource path="res://scripts/Air.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Snail E 7.png" type="Texture" id=9]
 [ext_resource path="res://assets/Snail D 7.png" type="Texture" id=10]
 [ext_resource path="res://assets/Snail B 7.png" type="Texture" id=11]
 [ext_resource path="res://assets/Snail A 7.png" type="Texture" id=12]
 [ext_resource path="res://assets/Snail C 7.png" type="Texture" id=13]
-[ext_resource path="res://UI/goBackBtn.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/UI/goBackBtn.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/SmallPlatformR.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/PlatformL.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/SmallPlatformL.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/PlatformR.tscn" type="PackedScene" id=18]
+[ext_resource path="res://fonts/NiceFont.tres" type="DynamicFont" id=19]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/icon.png" type="Texture" id=21]
+[ext_resource path="res://scripts/BackgroundGenerator.gd" type="Script" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "Cling",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Run",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -32,14 +40,14 @@ animations = [ {
 "name": "Fall",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "Idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "Cling",
 "speed": 5.0
 } ]
 
@@ -47,21 +55,70 @@ animations = [ {
 radius = 26.3687
 height = 20.2985
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 29.7493, 634.996 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 29.7493, 492.963 )
 
-[sub_resource type="Curve2D" id=4]
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 512.821, 56 )
+
+[sub_resource type="Curve2D" id=6]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 544, 0 )
 }
 
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://fonts/GOTHIC.TTF"
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 12
+use_filter = true
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://fonts/GOTHIC.TTF"
+
+[sub_resource type="DynamicFont" id=11]
+size = 12
+use_filter = true
+font_data = SubResource( 10 )
+
 [node name="World" type="Node"]
 script = ExtResource( 5 )
-platform_scene = ExtResource( 6 )
-small_platform_scene = ExtResource( 7 )
+platformR_scene = ExtResource( 18 )
+platformL_scene = ExtResource( 16 )
+small_platformR_scene = ExtResource( 15 )
+small_platformL_scene = ExtResource( 17 )
+
+[node name="Backgrounds" type="Node" parent="."]
+
+[node name="BackgroundGenerator" type="Position2D" parent="Backgrounds"]
+position = Vector2( 0, 1864 )
+script = ExtResource( 22 )
+Background = ExtResource( 20 )
+grid_size = 1008
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Platforms"]
+wait_time = 0.652
+
+[node name="BeginningScene" type="Timer" parent="Platforms"]
+wait_time = 0.001
+one_shot = true
+autostart = true
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 208, 896 )
+position = Vector2( 80, 912 )
+collision_layer = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -80,6 +137,7 @@ shape = SubResource( 2 )
 current = true
 limit_left = 0
 limit_right = 576
+limit_bottom = 1860
 limit_smoothed = true
 drag_margin_v_enabled = true
 drag_margin_top = 0.0
@@ -120,70 +178,126 @@ __meta__ = {
 }
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 0, 628.963 )
+position = Vector2( 0, 488 )
 scale = Vector2( 7.24, 1 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 script = ExtResource( 3 )
 
+[node name="ColorRect" type="ColorRect" parent="Floor/FloorShape"]
+material = SubResource( 4 )
+margin_left = -30.0
+margin_top = -496.0
+margin_right = 30.0
+margin_bottom = 496.0
+color = Color( 0.00784314, 0.207843, 0.270588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DeathLine" type="Position2D" parent="Floor"]
-position = Vector2( 0, 1208 )
+position = Vector2( 0, 800 )
 scale = Vector2( 0.641026, 1 )
 
+[node name="WaterBottom" type="KinematicBody2D" parent="Floor"]
+position = Vector2( 0, 728 )
+collision_layer = 2
+
+[node name="Colider" type="CollisionShape2D" parent="Floor/WaterBottom"]
+position = Vector2( 0, 40 )
+shape = SubResource( 5 )
+
 [node name="PlatformPath" type="Path2D" parent="."]
-curve = SubResource( 4 )
+curve = SubResource( 6 )
 
 [node name="PlatformSpawn" type="PathFollow2D" parent="PlatformPath"]
 position = Vector2( 32, 0 )
 
+[node name="Sprite" type="Sprite" parent="PlatformPath/PlatformSpawn"]
+texture = ExtResource( 21 )
+
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 288, -48 )
-
-[node name="Platforms" type="Node" parent="."]
-
-[node name="Platform1" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 496, 64 )
-
-[node name="Platform3" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 432, 672 )
-
-[node name="Platform2" parent="Platforms" instance=ExtResource( 6 )]
-position = Vector2( 120, 507.54 )
-
-[node name="SmallPlatform1" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 104, 216 )
-
-[node name="SmallPlatform2" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 448, 304 )
-
-[node name="SmallPlatform3" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 232, 960 )
-
-[node name="SmallPlatform4" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 544, 1000 )
-
-[node name="Timer" type="Timer" parent="Platforms"]
-wait_time = 1.5
-autostart = true
 
 [node name="Walls" type="Node" parent="."]
 
 [node name="WallGenerator" type="Position2D" parent="Walls"]
-position = Vector2( 0, 1600 )
+position = Vector2( 0, 2304 )
 script = ExtResource( 4 )
 wall = ExtResource( 8 )
 grid_size = 80
 
-[node name="HUD" type="Node" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="goBackButton" parent="HUD" instance=ExtResource( 14 )]
-margin_left = 18.0
-margin_top = 400.0
-margin_right = 107.0
-margin_bottom = 424.0
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 113.0
+margin_bottom = 32.0
+referance_path = "res://scenes/UI/TitleScreen.tscn"
 
-[connection signal="instance_node" from="." to="." method="instance_node"]
+[node name="Score" type="Label" parent="HUD/goBackButton"]
+margin_left = 232.0
+margin_top = -8.0
+margin_right = 272.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Air" type="Label" parent="HUD/goBackButton"]
+margin_left = 440.0
+margin_right = 480.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGameScreen" type="CanvasLayer" parent="."]
+
+[node name="NewGame" type="ColorRect" parent="NewGameScreen"]
+margin_right = 576.0
+margin_bottom = 1024.0
+color = Color( 0, 0.0313726, 0.0117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReadyText" type="Label" parent="NewGameScreen/NewGame"]
+margin_left = 136.0
+margin_top = 264.0
+margin_right = 480.0
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 19 )
+custom_colors/font_color = Color( 0.929412, 0.988235, 1, 1 )
+text = "Get Ready..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReadyText2" type="Label" parent="NewGameScreen/NewGame"]
+margin_left = 200.0
+margin_top = 352.0
+margin_right = 384.0
+margin_bottom = 376.0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.929412, 0.988235, 1, 1 )
+text = "(Did you review the controls?)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Platforms/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Platforms/BeginningScene" to="." method="_on_BeginningScene_timeout"]
 [connection signal="fell" from="Player" to="." method="new_game"]
 [connection signal="body_shape_entered" from="Floor" to="Player" method="_on_Floor_body_shape_entered"]
 [connection signal="body_shape_exited" from="Floor" to="Player" method="_on_Floor_body_shape_exited"]
-[connection signal="death_line" from="Floor" to="." method="_on_Floor_death_line"]
-[connection signal="timeout" from="Platforms/Timer" to="." method="_on_Timer_timeout"]
