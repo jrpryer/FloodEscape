@@ -1,42 +1,34 @@
 extends KinematicBody2D
 
 signal fell
-signal change_air(was, nowis)
+signal popBubble(breathrange)
+signal fillBubble(breathrange)
 #signal underwater
 
 const UP = Vector2(0, -1)
 const PULL = 22
 var grav = PULL
-var world
-var hud
 var speed
 
 var max_speed = 400
 var jump_height = 650
-var jumps_remaining
 var acceleration = 50
 var veloctiy = -1000
 var motion = Vector2()
 var friction_power = .5
 var slide_speed = 200
-var running
 
-var PlayerID
-var underwater
-var breath
+onready var jumps_remaining = 2
+onready var running = false
+onready var breath = 100
+onready var underwater = false
+onready var PlayerID = get_instance_id()
+onready var world = get_tree().get_root().find_node("World",false,false)
+#onready var hud = get_tree().get_root().find_node("HUD",true,false)
+#onready var _popSend = connect("popBubble", hud, "popBubble")
+#onready var _fillSend = connect("fillBubble", hud, "fillBubble")
+var breath_range = 100
 
-func _ready():
-	jumps_remaining = 2
-	PlayerID = get_instance_id()
-	world = get_tree().get_root().find_node("World",false,false)
-	hud = get_tree().get_root().find_node("AirHUD",true,false)
-	var _breathSend = connect("change_air", hud, "change_air")
-#	world.connect("slow",self,"handle_slow")
-#	world.connect("normal",self,"handle_normal")
-#	world.connect("fast",self,"handle_fast")
-	underwater = false
-	breath = 1
-	running = false
 
 func _physics_process(delta):
 	speed = world.global_speed
@@ -48,9 +40,12 @@ func _physics_process(delta):
 	breathe(delta)
 	animations()
 	motion = move_and_slide(motion, UP)
+
+func _process(_delta):
+	handleBreath()
 	
 	
-func run(delta):
+func run(_delta):
 	if Input.is_action_pressed("move_right"):
 		running = true
 		motion.x = min(motion.x+acceleration, max_speed)
@@ -113,18 +108,13 @@ func gravity(gravity):
 
 func breathe(delta):
 	if underwater:
-		var breath_was = breath
-		breath = max(breath-.07*delta, 0)
-		print(breath) ##DEBUG
-		handleBreath(breath_was)
+		breath = max(breath-7*delta, 0)
 
-	if not underwater and Input.is_action_pressed("breath"):
-		var breath_was = breath
-		breath = min(breath+.1*delta, 1)
-		print(breath)
-		handleBreath(breath_was)
+	elif not underwater and Input.is_action_pressed("breathe"):
+		breath = min(breath+10*delta, 100)
 	if breath <= 0:
 		breath = 0
+		breath_range = 0
 		print("DEAD")
 		emit_signal("fell")
 
@@ -141,9 +131,26 @@ func animations():
 		$Sprite.flip_h = true
 		$Sprite.play("Cling")
 
-func handleBreath(breath_was):
-	if abs(breath_was - breath) >= .2:
-		emit_signal("change_air", breath_was, breath)
+func handleBreath():
+	var bubble_change = breath_range - (breath)
+#	print(bubble_change)
+	if abs(bubble_change) >= 20:
+		if not is_negative(bubble_change):
+			breath_range = max(breath_range-20, 0)
+#			call_deferred("emit_signal", ("popbubble"), breath_range)
+			emit_signal("popBubble", breath_range)
+		elif is_negative(bubble_change):
+			breath_range = min(breath_range+20, 100)
+#			call_deferred("emit_signal", "fillbubble", "breath_range")
+			emit_signal("fillBubble", breath_range)
+		print(breath_range)
+
+func is_negative(number):
+	if number < 0:
+		return true
+	else:
+		return false
+
 		
 	
 #func handle_slow():

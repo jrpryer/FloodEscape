@@ -25,6 +25,7 @@ var platform_spawn_location
 var platform_spawn
 
 func _ready():
+	rng.randomize()
 	global_speed = 0
 	yield(get_tree().create_timer(2), "timeout")
 	$NewGameScreen/NewGame.visible = false
