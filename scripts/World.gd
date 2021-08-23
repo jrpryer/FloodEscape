@@ -1,21 +1,15 @@
 extends Node
 
-signal slow
-signal fast
-signal normal
-signal instance_node
-signal instance_node_bk
-
 export (PackedScene) var platformR_scene
 export (PackedScene) var platformL_scene
 export (PackedScene) var small_platformR_scene
 export (PackedScene) var small_platformL_scene
+export var _referance_path = ""
 
 const MIN_DIST = -520
 const MAX_DIST = -30
 const STARTSPEED = 1
 var global_speed = STARTSPEED
-var score = 0
 var rng = RandomNumberGenerator.new()
 var rando
 var cur_dist_top
@@ -23,14 +17,17 @@ var cur_dist_bottom
 
 var platform_spawn_location
 var platform_spawn
+#onready var TitleScreen = get_tree().get_root().find_node("TitleScreen",true,false)
+onready var score = Floor.score
 
 func _ready():
 	rng.randomize()
 	global_speed = 0
 	yield(get_tree().create_timer(2), "timeout")
-	$NewGameScreen/NewGame.visible = false
+	$NewGameScreen/NewGameColor.visible = false
 	global_speed = STARTSPEED
 	$Platforms/Timer.start()
+	$MusicBk.play()
 
 
 func _process(_delta):
@@ -71,9 +68,14 @@ func instance_node_bk(node, location):
 	$Backgrounds.add_child(bkgrnd)
 	bkgrnd.position.y = location
 
-func new_game():
-	$Player.reset($StartPosition.position) # Temporary
-	$Player.breath = 1 # Temporary	
+func dead():
+	$Platforms/Timer.stop()
+	var highscore = score
+	save(highscore)
+	var _changeScene = get_tree().change_scene(_referance_path)
+	
+#	$Player.reset($StartPosition.position) # Temporary
+#	$Player.breath = 1 # Temporary	
 	
 	
 func _on_Timer_timeout():
@@ -109,32 +111,14 @@ func makePlatform():
 		elif plaformInstancePos >= 432 and not plaformInstancePos > 576:
 			$Platforms.add_child(small_platformR)
 			small_platformR.position = Vector2(plaformInstancePos, platform_spawn_location)
-	
-	
-	
 
-#	if rando >= 1 and not rando > 25:
-#		$Platforms.add_child(platformR)
-#		platformR.position = platform_spawn_location.position
-#		#platformR.position.x = rng.randf_range(platform_spawn_location.x+288, 576)
-#		#platformR.position.y = platform_spawn_location.y
-#
-#	elif rando >= 50 and not rando > 75:
-#		$Platforms.add_child(platformL)
-#		platformL.position = platform_spawn_location.position
-#		#platformR.position.x = rng.randf_range(platform_spawn_location.x, 288)
-#		#platformR.position.y = platform_spawn_location.y
-#
-#	elif rando >= 25 and not rando > 50:
-#		$Platforms.add_child(small_platformR)
-#		small_platformR.position = platform_spawn_location.position
-#		#small_platformR.position.x = rng.randf_range(platform_spawn_location.x+288, 576)
-#		#small_platformR.position.y = platform_spawn_location.y
-#	elif rando >= 75:
-#		$Platforms.add_child(small_platformL)
-#		small_platformR.position = platform_spawn_location.position
-#		#small_platformL.position.x = rng.randf_range(platform_spawn_location.x, 288)
-#		#small_platformL.position.y = platform_spawn_location.y
+
+func save(scoreDat):
+	var file = File.new()
+	file.open("user://FloodRunHighscore.dat", File.WRITE)
+	file.store_var(scoreDat, false)
+	file.close()
+
 
 func _on_BeginningScene_timeout():
 	var platformR1 = platformR_scene.instance()

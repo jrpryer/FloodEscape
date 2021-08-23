@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Time To Rise.mp3-76fff98c7ef696343e89178b28f40ff1.mp3str"
+
+[deps]
+
+source_file="res://assets/Music/Time To Rise.mp3"
+dest_files=[ "res://.import/Time To Rise.mp3-76fff98c7ef696343e89178b28f40ff1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

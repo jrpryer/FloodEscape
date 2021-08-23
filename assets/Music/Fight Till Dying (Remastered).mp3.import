@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fight Till Dying (Remastered).mp3-66e90cb65e61799d6be01c6932e8937f.mp3str"
+
+[deps]
+
+source_file="res://assets/Music/Fight Till Dying (Remastered).mp3"
+dest_files=[ "res://.import/Fight Till Dying (Remastered).mp3-66e90cb65e61799d6be01c6932e8937f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

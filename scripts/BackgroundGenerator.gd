@@ -28,7 +28,7 @@ func _ready():
 
 func _process(_delta):
 	speed = world.global_speed
-	if position.y >= -6144:
+	if position.y >= -7168:
 		makeBackground()
 	#elif (global_position.y - yPosition.y ) <= -512:
 	#	makeWalls()

@@ -115,7 +115,6 @@ func breathe(delta):
 	if breath <= 0:
 		breath = 0
 		breath_range = 0
-		print("DEAD")
 		emit_signal("fell")
 
 func animations():
@@ -133,7 +132,6 @@ func animations():
 
 func handleBreath():
 	var bubble_change = breath_range - (breath)
-#	print(bubble_change)
 	if abs(bubble_change) >= 20:
 		if not is_negative(bubble_change):
 			breath_range = max(breath_range-20, 0)
@@ -143,7 +141,6 @@ func handleBreath():
 			breath_range = min(breath_range+20, 100)
 #			call_deferred("emit_signal", "fillbubble", "breath_range")
 			emit_signal("fillBubble", breath_range)
-		print(breath_range)
 
 func is_negative(number):
 	if number < 0:
@@ -174,10 +171,8 @@ func reset(pos):
 
 func _on_Floor_body_shape_entered(body_id, _body, _body_shape, _local_shape):
 	if body_id == PlayerID:
-		print("underwater")
 		underwater = true
 
 func _on_Floor_body_shape_exited(body_id, _body, _body_shape, _local_shape):
 	if body_id == PlayerID:
-		print("safe")
 		underwater = false

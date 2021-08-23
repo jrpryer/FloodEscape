@@ -19,7 +19,7 @@ func _ready():
 #func handle_fast():
 #	speed = 5
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	speed = world.global_speed
 	position.y += speed
 	if position.y > deathline.get_global_transform().origin.y:

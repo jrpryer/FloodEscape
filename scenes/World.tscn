@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://scripts/Floor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/PlayerScript.gd" type="Script" id=2]
@@ -6,12 +6,14 @@
 [ext_resource path="res://scripts/WallGenerator.gd" type="Script" id=4]
 [ext_resource path="res://scripts/World.gd" type="Script" id=5]
 [ext_resource path="res://scenes/UI/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Wooden_UI_png/obj_04.png" type="Texture" id=7]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Snail E 7.png" type="Texture" id=9]
 [ext_resource path="res://assets/Snail D 7.png" type="Texture" id=10]
 [ext_resource path="res://assets/Snail B 7.png" type="Texture" id=11]
 [ext_resource path="res://assets/Snail A 7.png" type="Texture" id=12]
 [ext_resource path="res://assets/Snail C 7.png" type="Texture" id=13]
+[ext_resource path="res://assets/Animations/30FPS_ASWind_09_Updraft.png" type="Texture" id=14]
 [ext_resource path="res://scenes/SmallPlatformR.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/PlatformL.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/SmallPlatformL.tscn" type="PackedScene" id=17]
@@ -20,13 +22,17 @@
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/icon.png" type="Texture" id=21]
 [ext_resource path="res://scripts/BackgroundGenerator.gd" type="Script" id=22]
+[ext_resource path="res://assets/Animations/30FPS_ACCK032_Carnage.png" type="Texture" id=23]
+[ext_resource path="res://scripts/MusicBk.gd" type="Script" id=24]
+[ext_resource path="res://assets/Music/Fight Till Dying (Remastered).mp3" type="AudioStream" id=25]
+[ext_resource path="res://assets/Sounds/Fountain_Loop.wav" type="AudioStream" id=26]
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 320, 0, 0, 0, 0, 0, 544, 0 )
 }
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
@@ -38,6 +44,11 @@ animations = [ {
 "name": "Run",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "Fall",
@@ -47,41 +58,219 @@ animations = [ {
 "loop": true,
 "name": "Jump",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 26.3687
 height = 20.2985
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 29.7493, 492.963 )
 
-[sub_resource type="CanvasItemMaterial" id=4]
+[sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 576, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 768, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 576, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 576, 1536, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 768, 1536, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 192, 0, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 384, 0, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 576, 0, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 768, 0, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 0, 230, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 0, 1840, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 192, 1840, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 384, 1840, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 576, 1840, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 768, 1840, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 0, 2070, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 192, 2070, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=37]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 384, 2070, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 576, 2070, 192, 230 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 23 )
+region = Rect2( 768, 2070, 192, 230 )
+
+[sub_resource type="SpriteFrames" id=40]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 6 ), SubResource( 6 ), SubResource( 6 ), SubResource( 6 ), SubResource( 6 ) ],
+"loop": true,
+"name": "Updraft",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ), SubResource( 24 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 512.821, 56 )
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=46]
 font_path = "res://fonts/GOTHIC.TTF"
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=43]
 size = 14
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 46 )
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=47]
 font_path = "res://fonts/GOTHIC.TTF"
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=45]
 size = 14
 use_filter = true
-font_data = SubResource( 12 )
+font_data = SubResource( 47 )
 
 [node name="World" type="Node"]
 script = ExtResource( 5 )
@@ -89,6 +278,7 @@ platformR_scene = ExtResource( 18 )
 platformL_scene = ExtResource( 16 )
 small_platformR_scene = ExtResource( 15 )
 small_platformL_scene = ExtResource( 17 )
+_referance_path = "res://scenes/UI/EndGame.tscn"
 
 [node name="Backgrounds" type="Node" parent="."]
 
@@ -109,7 +299,7 @@ one_shot = true
 autostart = true
 
 [node name="PlatformPath" type="Path2D" parent="."]
-curve = SubResource( 6 )
+curve = SubResource( 1 )
 
 [node name="PlatformSpawn" type="PathFollow2D" parent="PlatformPath"]
 position = Vector2( 32, 0 )
@@ -126,13 +316,13 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "Cling"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( -4, 0 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -183,11 +373,12 @@ __meta__ = {
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 position = Vector2( 0, 488 )
 scale = Vector2( 7.24, 1 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="Floor/FloorShape"]
-material = SubResource( 4 )
+visible = false
+material = SubResource( 5 )
 margin_left = -30.0
 margin_top = -496.0
 margin_right = 30.0
@@ -196,6 +387,28 @@ color = Color( 0.00784314, 0.207843, 0.270588, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Floor/FloorShape"]
+modulate = Color( 0.0478249, 0.308071, 0.583008, 1 )
+position = Vector2( 0, 24.0001 )
+scale = Vector2( 0.265618, 5.33333 )
+frames = SubResource( 40 )
+animation = "Updraft"
+frame = 9
+playing = true
+
+[node name="Water" type="Sprite" parent="Floor/FloorShape"]
+modulate = Color( 0.235294, 0.729412, 1, 1 )
+position = Vector2( 0, 24 )
+scale = Vector2( 0.25, 3 )
+texture = ExtResource( 7 )
+flip_v = true
+
+[node name="WaterSound" type="AudioStreamPlayer2D" parent="Floor/FloorShape"]
+stream = ExtResource( 26 )
+autoplay = true
+max_distance = 2500.0
+attenuation = 0.189465
 
 [node name="DeathLine" type="Position2D" parent="Floor"]
 position = Vector2( 0, 800 )
@@ -207,7 +420,7 @@ collision_layer = 2
 
 [node name="Colider" type="CollisionShape2D" parent="Floor/WaterBottom"]
 position = Vector2( 0, 40 )
-shape = SubResource( 5 )
+shape = SubResource( 41 )
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 288, -48 )
@@ -222,7 +435,7 @@ grid_size = 80
 
 [node name="NewGameScreen" type="CanvasLayer" parent="."]
 
-[node name="NewGame" type="ColorRect" parent="NewGameScreen"]
+[node name="NewGameColor" type="ColorRect" parent="NewGameScreen"]
 margin_right = 576.0
 margin_bottom = 1864.0
 color = Color( 0, 0.0313726, 0.0117647, 1 )
@@ -230,7 +443,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReadyText" type="Label" parent="NewGameScreen/NewGame"]
+[node name="ReadyText" type="Label" parent="NewGameScreen/NewGameColor"]
 margin_left = 136.0
 margin_top = 264.0
 margin_right = 480.0
@@ -244,12 +457,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReadyText2" type="Label" parent="NewGameScreen/NewGame"]
+[node name="ReadyText2" type="Label" parent="NewGameScreen/NewGameColor"]
 margin_left = 184.0
 margin_top = 352.0
 margin_right = 388.0
 margin_bottom = 376.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 43 )
 custom_colors/font_color = Color( 0.929412, 0.988235, 1, 1 )
 text = "(Did you review the controls?)"
 align = 1
@@ -258,12 +471,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReadyText3" type="Label" parent="NewGameScreen/NewGame"]
+[node name="ReadyText3" type="Label" parent="NewGameScreen/NewGameColor"]
 margin_left = 200.0
 margin_top = 1032.0
 margin_right = 384.0
 margin_bottom = 1056.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 45 )
 custom_colors/font_color = Color( 0.929412, 0.988235, 1, 1 )
 text = "HEY! No cheating
 ^_^"
@@ -274,9 +487,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MusicBk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+script = ExtResource( 24 )
+
 [connection signal="timeout" from="Platforms/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Platforms/BeginningScene" to="." method="_on_BeginningScene_timeout"]
-[connection signal="fell" from="Player" to="." method="new_game"]
+[connection signal="fell" from="Player" to="." method="dead"]
 [connection signal="popBubble" from="Player" to="Player/HUD" method="popBubble" flags=3]
 [connection signal="body_shape_entered" from="Floor" to="Player" method="_on_Floor_body_shape_entered"]
 [connection signal="body_shape_exited" from="Floor" to="Player" method="_on_Floor_body_shape_exited"]

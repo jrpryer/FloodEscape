@@ -1,7 +1,8 @@
 extends Area2D
 
-var water_level = get_global_transform()
-
-func _process(_delta):
-	pass
-#	$FloorSprite.play("water") # Issues with this
+var water_level = get_transform()
+onready var score = 0
+var Vol = 80
+var GlobalVol
+var MusicVol = -30  
+var Sound

@@ -30,7 +30,7 @@ func _ready():
 func _process(_delta):
 	speed = world.global_speed
 	global_position.y += speed
-	if global_position.y >= -6144:
+	if global_position.y >= -7168:
 		makeWalls()
 	#elif (global_position.y - yPosition.y ) <= -512:
 	#	makeWalls()

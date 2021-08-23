@@ -1,33 +1,38 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/UI/MenuBtn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/TitleScreenBkground.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/Wooden_UI_png/obj_04.png" type="Texture" id=4]
+[ext_resource path="res://scripts/TitleScreen.gd" type="Script" id=5]
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/GOTHIC.TTF"
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=2]
 size = 22
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 56
 font_data = ExtResource( 3 )
 
-[node name="TitleScreen" type="Node2D"]
+[sub_resource type="DynamicFont" id=4]
+size = 56
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-margin_right = 576.0
-margin_bottom = 1024.0
-color = Color( 0.0705882, 0.164706, 0.121569, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[sub_resource type="DynamicFont" id=5]
+size = 25
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="ThemedBackground" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
 
@@ -42,7 +47,7 @@ focus_neighbour_right = NodePath("../mnuOptions")
 focus_neighbour_bottom = NodePath("../mnuOptions")
 focus_next = NodePath("../mnuOptions")
 focus_previous = NodePath("../mnuExit")
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 text = "New Game"
 referance_path = "res://scenes/World.tscn"
 start_focused = true
@@ -52,7 +57,7 @@ margin_left = 160.0
 margin_top = 640.0
 margin_right = 410.0
 margin_bottom = 707.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 text = "Controls"
 referance_path = "res://scenes/UI/Controls.tscn"
 
@@ -67,7 +72,7 @@ focus_neighbour_right = NodePath("../mnuExit")
 focus_neighbour_bottom = NodePath("../mnuExit")
 focus_next = NodePath("../mnuExit")
 focus_previous = NodePath("../mnuNewGame")
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 text = "Options"
 referance_path = "res://scenes/UI/Options.tscn"
 
@@ -82,20 +87,69 @@ focus_neighbour_right = NodePath("../mnuNewGame")
 focus_neighbour_bottom = NodePath("../mnuNewGame")
 focus_next = NodePath("../mnuNewGame")
 focus_previous = NodePath("../mnuOptions")
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 text = "Exit"
 
-[node name="Title" type="Label" parent="."]
-margin_left = 184.0
-margin_top = 136.0
-margin_right = 392.0
-margin_bottom = 220.0
+[node name="TitleBk" type="Label" parent="."]
+margin_left = 154.778
+margin_top = 139.043
+margin_right = 415.778
+margin_bottom = 223.043
 rect_pivot_offset = Vector2( 104, 0 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.843137, 0.992157, 1, 1 )
-text = "Flood Run"
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Flood Escape"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Title" type="Label" parent="."]
+margin_left = 152.0
+margin_top = 136.0
+margin_right = 413.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 104, 0 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.843137, 0.992157, 1, 1 )
+text = "Flood Escape"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScoreLabel" type="Label" parent="."]
+margin_left = 195.354
+margin_top = 25.4617
+margin_right = 291.354
+margin_bottom = 63.4617
+rect_pivot_offset = Vector2( 104, 0 )
+custom_fonts/font = SubResource( 5 )
+text = "Highscore:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Highscore" type="Label" parent="."]
+margin_left = 301.068
+margin_top = 27.3494
+margin_right = 397.068
+margin_bottom = 65.3494
+rect_pivot_offset = Vector2( 104, 0 )
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.235294, 0.623529, 1, 1 )
+position = Vector2( 288, 218.143 )
+scale = Vector2( 1.9, 0.4 )
+texture = ExtResource( 4 )
+flip_v = true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Switch (10).wav-07fb2a8e3c83bd082920095118a10528.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Switch (10).wav"
+dest_files=[ "res://.import/Switch (10).wav-07fb2a8e3c83bd082920095118a10528.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

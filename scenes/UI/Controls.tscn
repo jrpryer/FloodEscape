@@ -1,27 +1,35 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/Snail D 7.png" type="Texture" id=1]
 [ext_resource path="res://assets/Snail B 7.png" type="Texture" id=2]
 [ext_resource path="res://assets/Snail A 7.png" type="Texture" id=3]
 [ext_resource path="res://assets/Snail C 7.png" type="Texture" id=4]
 [ext_resource path="res://assets/bubble.png" type="Texture" id=5]
-[ext_resource path="res://assets/keyImage.png" type="Texture" id=6]
+[ext_resource path="res://assets/Wooden_UI_png/Plank_11.png" type="Texture" id=6]
 [ext_resource path="res://assets/bubblepop2.png" type="Texture" id=7]
-[ext_resource path="res://assets/spacekeyImage.png" type="Texture" id=8]
+[ext_resource path="res://assets/Wooden_UI_png/plank_18.png" type="Texture" id=8]
 [ext_resource path="res://assets/bubblepop1.png" type="Texture" id=9]
 [ext_resource path="res://assets/TitleScreenBkground.png" type="Texture" id=10]
 [ext_resource path="res://assets/spent_bubble.png" type="Texture" id=11]
 [ext_resource path="res://scenes/UI/goBackBtn.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/Wooden_UI_png/bg_01_01.png" type="Texture" id=13]
+[ext_resource path="res://assets/Wooden_UI_png/Plank_10.png" type="Texture" id=14]
+[ext_resource path="res://assets/Wooden_UI_png/Plank_07.png" type="Texture" id=15]
+[ext_resource path="res://assets/Wooden_UI_png/skull_03.png" type="Texture" id=16]
+[ext_resource path="res://assets/triangle.png" type="Texture" id=17]
+[ext_resource path="res://assets/Wooden_UI_png/circle_bg.png" type="Texture" id=18]
+[ext_resource path="res://assets/Wooden_UI_png/button_01_01.png" type="Texture" id=19]
+[ext_resource path="res://assets/Wooden_UI_png/button_01_02.png" type="Texture" id=20]
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/GOTHIC.TTF"
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 1 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
@@ -29,17 +37,25 @@ animations = [ {
 "speed": 0.5
 } ]
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://fonts/GOTHIC.TTF"
+
+[sub_resource type="DynamicFont" id=5]
 size = 15
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=6]
 size = 15
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 4 )
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="DynamicFont" id=7]
+size = 32
+use_filter = true
+font_data = SubResource( 4 )
+
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
@@ -47,12 +63,12 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=9]
 size = 15
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 4 )
 
-[sub_resource type="SpriteFrames" id=17]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ],
 "loop": true,
@@ -66,12 +82,35 @@ animations = [ {
 texture = ExtResource( 10 )
 centered = false
 
+[node name="ControlsBg" type="Sprite" parent="."]
+position = Vector2( 286.875, 25.0633 )
+scale = Vector2( 0.26, 0.05 )
+texture = ExtResource( 13 )
+
+[node name="ControlsPanel" type="Sprite" parent="."]
+position = Vector2( 281.39, 23.4298 )
+scale = Vector2( 0.5, 0.3 )
+texture = ExtResource( 8 )
+
+[node name="CONTROLS" type="Label" parent="."]
+margin_left = 232.0
+margin_top = 8.0
+margin_right = 337.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "CONTROLS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="JumpInstructions" type="Label" parent="."]
 margin_left = 64.0
-margin_top = 56.0
+margin_top = 150.363
 margin_right = 330.0
-margin_bottom = 82.0
-custom_fonts/font = SubResource( 11 )
+margin_bottom = 176.363
+custom_fonts/font = SubResource( 2 )
 text = "Press                        to jump"
 align = 1
 valign = 1
@@ -80,16 +119,27 @@ __meta__ = {
 }
 
 [node name="JumpSprite" type="AnimatedSprite" parent="JumpInstructions"]
-position = Vector2( 360, 88 )
-frames = SubResource( 12 )
+position = Vector2( 384, 54.2182 )
+frames = SubResource( 3 )
+frame = 1
 playing = true
 
-[node name="Spacebar" type="Label" parent="JumpInstructions/JumpSprite"]
-margin_left = -274.828
-margin_top = -104.0
-margin_right = -202.828
-margin_bottom = -78.0
-custom_fonts/font = SubResource( 13 )
+[node name="SpaceKey2" type="Sprite" parent="JumpInstructions"]
+position = Vector2( 120.616, 8.60742 )
+scale = Vector2( 0.18, 0.04 )
+texture = ExtResource( 13 )
+
+[node name="SpaceKey" type="Sprite" parent="JumpInstructions"]
+position = Vector2( 120, 4.352 )
+scale = Vector2( 0.14, 0.23 )
+texture = ExtResource( 15 )
+
+[node name="Spacebar" type="Label" parent="JumpInstructions"]
+margin_left = 85.172
+margin_top = -16.0
+margin_right = 157.172
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 5 )
 text = "Spacebar"
 align = 1
 valign = 1
@@ -97,17 +147,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="JumpInstructions"]
-position = Vector2( 120, 4.352 )
-scale = Vector2( 0.8, 1 )
-texture = ExtResource( 8 )
+[node name="XBoxJump" type="Sprite" parent="JumpInstructions"]
+position = Vector2( 80, 56 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 16 )
+
+[node name="XBoxA" type="Label" parent="JumpInstructions"]
+margin_left = 74.1046
+margin_top = 44.3032
+margin_right = 85.1046
+margin_bottom = 64.3032
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0.854902, 0.0352941, 1 )
+text = "A"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PSJump" type="Sprite" parent="JumpInstructions"]
+position = Vector2( 152, 56 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 18 )
+
+[node name="PSX" type="Label" parent="JumpInstructions"]
+margin_left = 141.876
+margin_top = 35.0034
+margin_right = 160.876
+margin_bottom = 76.0034
+custom_fonts/font = SubResource( 7 )
+text = "×"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RunInstructions" type="Label" parent="."]
 margin_left = 24.0
-margin_top = 280.0
+margin_top = 342.363
 margin_right = 414.0
-margin_bottom = 335.0
-custom_fonts/font = SubResource( 11 )
+margin_bottom = 397.363
+custom_fonts/font = SubResource( 2 )
 text = "Use                                   to run and
                                           stear in the air"
 align = 1
@@ -116,16 +198,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite2" type="Sprite" parent="RunInstructions"]
+[node name="ASprite2" type="Sprite" parent="RunInstructions"]
+position = Vector2( 113.497, -7.06299 )
+scale = Vector2( 0.06, 0.04 )
+texture = ExtResource( 13 )
+
+[node name="SSprite2" type="Sprite" parent="RunInstructions"]
+position = Vector2( 161.497, -7.06445 )
+rotation = 3.14159
+scale = Vector2( 0.06, 0.04 )
+texture = ExtResource( 13 )
+
+[node name="DSprite2" type="Sprite" parent="RunInstructions"]
+position = Vector2( 209.497, -7.06299 )
+scale = Vector2( 0.06, 0.04 )
+texture = ExtResource( 13 )
+
+[node name="ASprite" type="Sprite" parent="RunInstructions"]
 position = Vector2( 112, -8 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
-[node name="aKey" type="Label" parent="RunInstructions/Sprite2"]
-margin_left = -11.3546
-margin_top = -18.9587
-margin_right = 7.64536
-margin_bottom = 7.04126
-custom_fonts/font = SubResource( 14 )
+[node name="SSprite" type="Sprite" parent="RunInstructions"]
+position = Vector2( 160, -8 )
+rotation = -3.14159
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="DSprite" type="Sprite" parent="RunInstructions"]
+position = Vector2( 208, -8 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="aKey" type="Label" parent="RunInstructions"]
+margin_left = 100.645
+margin_top = -25.2901
+margin_right = 119.645
+margin_bottom = 0.709814
+custom_fonts/font = SubResource( 6 )
 text = "A"
 align = 1
 valign = 1
@@ -133,33 +243,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite3" type="Sprite" parent="RunInstructions"]
-position = Vector2( 160, -8 )
-texture = ExtResource( 6 )
-
-[node name="sKey" type="Label" parent="RunInstructions/Sprite3"]
-margin_left = -9.88988
-margin_top = -19.0
-margin_right = 9.11012
-margin_bottom = 7.0
-custom_fonts/font = SubResource( 14 )
-text = "S"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite4" type="Sprite" parent="RunInstructions"]
-position = Vector2( 208, -8 )
-texture = ExtResource( 6 )
-
-[node name="dKey" type="Label" parent="RunInstructions/Sprite4"]
-margin_left = -9.89961
-margin_top = -18.9587
-margin_right = 9.10039
-margin_bottom = 7.04126
-custom_fonts/font = SubResource( 14 )
+[node name="dKey" type="Label" parent="RunInstructions"]
+margin_left = 198.1
+margin_top = -25.2901
+margin_right = 217.1
+margin_bottom = 0.709814
+custom_fonts/font = SubResource( 6 )
 text = "D"
 align = 1
 valign = 1
@@ -167,18 +256,55 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="sKey" type="Label" parent="RunInstructions"]
+margin_left = 150.11
+margin_top = -25.3315
+margin_right = 169.11
+margin_bottom = 0.668549
+custom_fonts/font = SubResource( 6 )
+text = "S"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoyStickBk" type="Sprite" parent="RunInstructions"]
+position = Vector2( 160, 72 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 20 )
+
+[node name="JoyStick" type="Sprite" parent="RunInstructions"]
+position = Vector2( 160, 72 )
+scale = Vector2( 0.28, 0.28 )
+texture = ExtResource( 19 )
+
+[node name="LJoystick" type="Label" parent="RunInstructions"]
+margin_left = 149.516
+margin_top = 56.0
+margin_right = 168.516
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 6 )
+text = "L"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RunSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 424, 400 )
-frames = SubResource( 15 )
+position = Vector2( 448, 448.109 )
+frames = SubResource( 8 )
+frame = 1
 playing = true
 
 [node name="BreathInstructions" type="Label" parent="."]
 margin_left = 24.0
-margin_top = 512.0
+margin_top = 574.363
 margin_right = 455.0
-margin_bottom = 567.0
-custom_fonts/font = SubResource( 11 )
-text = "Press                        to take a breath if 
+margin_bottom = 629.363
+custom_fonts/font = SubResource( 2 )
+text = "Press                           to take a breath if 
                                    you have lost breathe "
 align = 1
 valign = 1
@@ -186,12 +312,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LShiftKey2" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 145.061, -6.58496 )
+scale = Vector2( 0.13, 0.04 )
+texture = ExtResource( 13 )
+
+[node name="LShiftKey" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 144, -8 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+
 [node name="lshiftKey" type="Label" parent="BreathInstructions"]
 margin_left = 119.055
-margin_top = -26.9587
+margin_top = -23.9857
 margin_right = 167.055
-margin_bottom = -0.95874
-custom_fonts/font = SubResource( 16 )
+margin_bottom = 2.01428
+custom_fonts/font = SubResource( 9 )
 text = "LShift"
 align = 1
 valign = 1
@@ -199,36 +335,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite5" type="Sprite" parent="BreathInstructions"]
-position = Vector2( 144, -8 )
-scale = Vector2( 1.8, 1 )
-texture = ExtResource( 6 )
+[node name="XBoxBreathe" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 103.1, 47.1 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 16 )
+
+[node name="XBoxY" type="Label" parent="BreathInstructions"]
+margin_left = 97.3436
+margin_top = 36.2614
+margin_right = 108.344
+margin_bottom = 56.2614
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.854902, 0.760784, 0, 1 )
+text = "Y"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PSBreathe" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 175.1, 47.1 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 18 )
+
+[node name="PSTriangle2" type="Sprite" parent="BreathInstructions"]
+position = Vector2( 175.1, 46.0469 )
+scale = Vector2( 0.006, 0.006 )
+texture = ExtResource( 17 )
+
+[node name="PSTriangle" type="Label" parent="BreathInstructions"]
+margin_left = 166.0
+margin_top = 26.0
+margin_right = 186.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 7 )
+text = "△"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Bubble1" type="Sprite" parent="."]
-position = Vector2( 328, 600 )
+position = Vector2( 328, 662.363 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Bubble2" type="Sprite" parent="."]
-position = Vector2( 360, 600 )
+position = Vector2( 360, 662.363 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Bubble3" type="Sprite" parent="."]
-position = Vector2( 392, 600 )
+position = Vector2( 392, 662.363 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Bubble4" type="Sprite" parent="."]
-position = Vector2( 424, 600 )
+position = Vector2( 424, 662.363 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="PoppingBubble" type="AnimatedSprite" parent="."]
-position = Vector2( 456, 600 )
+position = Vector2( 456, 662.363 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 17 )
-frame = 11
+frames = SubResource( 10 )
 playing = true
 
 [node name="Tip1" type="Label" parent="."]
@@ -236,7 +408,7 @@ margin_left = 24.0
 margin_top = 792.189
 margin_right = 554.0
 margin_bottom = 905.189
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 text = "Run up against walls and branch edges 
 to slide and slow your fall
 

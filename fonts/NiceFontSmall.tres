@@ -1,9 +1,9 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[sub_resource type="DynamicFontData" id=10]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/GOTHIC.TTF"
 
 [resource]
 size = 15
 use_filter = true
-font_data = SubResource( 10 )
+font_data = SubResource( 1 )
